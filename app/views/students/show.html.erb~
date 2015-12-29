@@ -1,0 +1,68 @@
+<h1>Student Profile </h1>
+<%= debug(@student) %>
+<p>
+  <strong>Name:</strong>
+  <%= @student.first_name %> <%= @student.last_name %>
+</p>
+ 
+<p>
+  <strong>Father Name:</strong>
+  <%= @student.f_name %>
+</p>
+<p>
+  <strong>Date Of Birth:</strong>
+  <%= @student.date_of_birth %>
+</p>
+<p>
+  <strong>Age:</strong>
+  <%= @student.age %>
+</p>
+<p>
+  <strong>Blood Group:</strong>
+  <%= @student.blood_group %>
+</p>
+<p>
+  <strong>Contact No:</strong>
+  <%= @student.mobile %>
+</p>
+
+
+<p>
+  <strong>Address:</strong>
+  <%= @student.address_line_1 %> <%= @student.address_line_2 %>
+</p>
+
+
+<p>
+  <strong>Zip Code:</strong>
+  <%= @student.zip_code %>
+</p>
+
+<p>
+  <strong>City:</strong>
+  <%= @student.city_id %>
+</p>
+<p>
+  <strong>State:</strong>
+  <%= @student.state_id %>
+</p>
+<p>
+  <strong>Country:</strong>
+  <%= @student.country_id %>
+</p>
+
+<p>
+  <strong>Image:</strong>
+  <%= image_tag @student.image.url(:medium) %>
+</p>
+
+<p>
+  <strong>Resume:</strong>
+  
+	<%= link_to @student.resume_file_name, @student.resume.url, target: '_blank' %>
+
+</p>
+
+
+
+<%= link_to 'Back', students_path %>

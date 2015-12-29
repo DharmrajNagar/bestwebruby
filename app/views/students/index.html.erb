@@ -1,0 +1,61 @@
+<h1>Students List</h1>
+
+<%= link_to 'New Student', new_student_path %>
+
+<%= form_for :student, url: students_path, :method => 'get',  :html => { :multipart => true } do |f| %>
+<p>
+
+<%= text_field_tag :search, params[:search] %>
+<%= submit_tag "Search", :name => nil %>
+</p>
+<%= hidden_field_tag :direction, params[:direction] %>
+<%= hidden_field_tag :sort, params[:sort] %>
+<% end %>
+
+<table style="border:1px red solid;">
+  <tr>
+    <th>S.No.</th>
+    <th>Profile Image</th>
+    <th><%= sortable "first_name","Name" %></th>
+    <th><%= sortable "f_name","Father Name" %></th>
+    <th><%= sortable "date_of_birth","Date Of Birth" %></th>
+    <th><%= sortable "age","Age" %></th>
+    <th><%= sortable "blood_group","Blood Group" %></th>
+    <th><%= sortable "mobile","Contact No" %></th>
+    <th>Address</th>
+    <th><%= sortable "city_id","City" %></th>
+    <th><%= sortable "state_id","State" %></th>
+    <th><%= sortable "country_id","Country" %></th>
+    <th><%= sortable "zip_code","Zip Code" %></th>
+    <th>Resume</th>
+    <th colspan="20">Actions</th>
+  </tr>
+
+  <% @students.each_with_index do |student, index| %>
+    <tr style="text-align:center;">
+
+      <td><%= index + 1 %></td>
+      <td><%= image_tag student.image.url(:medium) %></td>
+      <td style="background-color:<%= cycle("red","green","blue") %>"><span style="background-color:<%= current_cycle %>"><%= student.first_name %> <%= student.last_name %></span></td>
+      <td><%= highlight(student.f_name, 'raj') %></td>
+      <td><%= student.date_of_birth %></td>
+      <td><%= student.age %></td>
+      <td><%= student.blood_group %></td>
+      <td><%= number_to_phone(student.mobile, country_code: 91)    %></td>
+      <td><%= student.address_line_1 %> <%= student.address_line_2 %></td>
+      <td><%= student.city_id %></td>
+      <td><%= student.state_id %></td>
+      <td><%= student.country_id %></td>
+      <td><%= student.zip_code %></td>      
+      <td><%= link_to student.resume_file_name, student.resume.url, target: '_blank' %></td>
+      <td><%= link_to 'Show', student_path(student) %></td>
+      <td><%= link_to 'Edit', edit_student_path(student) %></td>
+      <td><%= link_to 'Destroy', student_path(student),
+              method: :delete,
+              data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+  <% end %>
+
+</table>
+
+<%= will_paginate @students %>

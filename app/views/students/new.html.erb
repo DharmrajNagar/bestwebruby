@@ -1,0 +1,127 @@
+<% javascript 'dynamic_states' %>
+
+<%= form_for :student, url: students_path, remote: true, :html => { :multipart => true } do |f| %>
+ 
+  <% if @student.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@student.errors.count, "error") %> prohibited
+        this student from being saved:
+      </h2>
+      <ul>
+        <% @student.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <p>
+    <%= f.label :first_name %><br>
+    <%= f.text_field :first_name %>
+  </p>
+ 
+  <p>
+    <%= f.label :last_name %><br>
+    <%= f.text_field :last_name %>
+  </p>
+ 
+
+  <p>
+    <%= f.label :f_name %><br>
+    <%= f.text_field :f_name %>
+  </p>
+ 
+  <p>
+    <%= f.label :date_of_birth %><br>
+    <%= f.text_field :date_of_birth %>
+  </p>
+
+
+<p>
+    <%= f.label :age %><br>
+    <%= f.text_field :age %>
+  </p>
+ 
+  <p>
+    <%= f.label :blood_group %><br>
+    <%= f.text_field :blood_group %>
+  </p>
+
+ <p>
+    <%= f.label :mobile %><br>
+    <%= f.text_field :mobile %>
+  </p>
+ 
+  <p>
+    <%= f.label :address_line_1 %><br>
+    <%= f.text_area :address_line_1 %>
+  </p>
+
+ <p>
+    <%= f.label :address_line_2 %><br>
+    <%= f.text_area :address_line_2 %>
+  </p>
+<%
+=begin %>
+<p>
+  <%= f.label :country_id %><br>
+  <%= f.collection_select :country_id, Country.order(:name), :id, :name, :prompt => "Select a Country" %>
+</p>
+<p>
+  <%= f.label :state_id, "State or Province" %><br>
+  <%= f.collection_select :state_id, State.order(:name), :id, :name, include_blank: true %>
+</p>
+
+<%
+=end %>
+
+    <p>
+    <%= f.label :Country %><br>
+    <%= f.text_field :country_id %>
+  </p>
+
+
+  <p>
+    <%= f.label :State %><br>
+    <%= f.text_field :state_id %>
+  </p>
+
+  <p>
+    <%= f.label :City %><br>
+    <%= f.text_field :city_id %>
+  </p>
+
+
+
+
+
+
+
+<p>
+    <%= f.label :Zip %> <%= f.label :Code %><br>
+    <%= f.text_field :zip_code %>
+  </p>
+ 
+  <p>
+    <%= f.label :Image %><br>
+    <%= f.file_field :image %>
+  </p>
+
+<p>
+     <%= f.label :resume %><br>
+    <%= f.file_field :resume %>
+  </p>
+
+
+
+
+
+  <p>
+    <%= f.submit %>
+  </p>
+ 
+<% end %>
+ 
+<%= link_to 'Back', :back %>
+
