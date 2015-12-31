@@ -12,8 +12,15 @@ gem 'jquery-ui-rails'
 
 
 # Use postgresql as the database for Active Record
+group :product do
+ gem 'pg'
+end
+group :development do
+ gem 'mysql2'
+end
 #gem 'pg', '~> 0.15'
-gem 'mysql2'
+#gem 'mysql2'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
